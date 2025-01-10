@@ -1,0 +1,201 @@
+/* Gesamtes Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e0f7fa, #81dcb3, #42aaff); /* Kreativer Hintergrund mit Farbverlauf */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #333; /* Dunkle Schrift für bessere Lesbarkeit und an die Website anpassen */
+
+    /*Hintergrundbild auf gesamtem Bildschirm*/
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+:root {
+    --blue: #42aaff;
+    --green: #81dcb3;
+    --dark-blue: #0c4c8a;
+}
+
+header {
+    background-color: transparent; /* Header hat keinen Hintergrund, der sich von der Seite abhebt */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-left: 500px;
+}
+
+header .logo img {
+    width: 100px; /* Logo etwas größer */
+    margin-right: 20px;
+}
+
+header h1 {
+    font-size: 3rem; /* Großes Logo und Website-Name */
+    color: var(--dark-blue); /* Dunkelblauer Text für Titel */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--dark-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Text in Farbverlauf */
+}
+
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: var(--dark-blue); /* Weißer Text für Menü */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+header .reminder-icon {
+    font-size: 22px;
+}
+/* Login Container */
+.login-container {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 15px;
+    width: 100%;
+    max-width: 600px;
+    padding: 100px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto; /* Horizontale Zentrierung */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertikale Zentrierung */
+    align-items: center;
+}
+
+.login-container img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+.home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--blue); /* Farbe des Buttons */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: var(--dark-blue); /* Farbe beim Hover */
+}
+
+/* Hauptbereich */
+main {
+    padding: 50px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.tile {
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Leichte Schatten für den 3D-Effekt */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.tile:hover {
+    transform: translateY(-10px); /* Kachel hebt sich beim Hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stärkere Schatten beim Hover */
+}
+
+.tile img {
+    width: 100px; /* Symbole auf Kacheln größer */
+    margin-bottom: 20px;
+}
+
+.tile h2 {
+    font-size: 1.5rem;
+    color: var(--dark-blue); /* Passende Farbe für die Titel */
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+footer ul li {
+    margin: 0 15px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+footer a:hover{
+    text-decoration: underline;
+}
+/*responsive footer*/
+@media (max-width: 768px) {
+    footer ul{
+        display: block;
+        padding: 15px; /* Größeres Padding auf kleinen Bildschirmen */
+        margin-bottom: 10px; /* Mehr Abstand zwischen den Listenelementen */
+    }
+    footer ul li {
+        margin-bottom: 9px;
+    }
+}
+

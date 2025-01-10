@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gastvorträge, Seminare, Workshops - Uni Reserve</title>
+    <link rel="stylesheet" href="styleDienstleistungen.css" />
+    <!-- Verlinkung der externen CSS-Datei -->
+    <script
+      src="https://kit.fontawesome.com/2ec6dc2d1f.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- Header-Bereich mit Hauptüberschrift -->
+    <div class="header-container">
+      <div id="blurr" class="blurr" style="display: none"></div>
+      <!--Blurr für search input-->
+
+      <!--Großer Nav-->
+      <nav class="nav-large">
+        <div class="nav-img" onclick="window.location.href='Startseite.html'">
+          <span class="header-text">UNI RESERVE</span>
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png"
+            alt="UniReserve Logo"
+            class="logo-image"
+          />
+        </div>
+
+        <div class="nav-text">
+          <a class="dropdown-link" href="Bibliotheksressourcen.html"
+            >Verfügbare Veranstaltungen</a
+          >
+          <a href="studienraeume.html">Studienräume buchen</a>
+        </div>
+
+        <input
+          type="text"
+          id="search-input"
+          class="searchinput"
+          placeholder="Suche..."
+        />
+        <i class="fa fa-search" id="search-icon" onclick="performSearch()"></i>
+
+        <div class="nav-symbol">
+          <i class="fa fa-user"></i>
+          <ul class="user-content">
+            <button
+              class="user-button"
+              onclick="window.location.href='Benutzerprofl.html'"
+            >
+              Profil
+            </button>
+            <button
+              class="user-button"
+              onclick="window.location.href='login.html'"
+            >
+              ausloggen
+            </button>
+          </ul>
+        </div>
+      </nav>
+
+      <!--Kleine Nav-->
+      <nav class="nav-small">
+        <div class="nav-img" onclick="window.location.href='Startseite.html'">
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png"
+            alt="UniReserve Logo"
+            class="logo-image"
+          />
+        </div>
+        <input
+          type="text"
+          id="search-input-small"
+          class="searchinput"
+          placeholder="Suche..."
+        />
+        <div class="nav-symbol">
+          <i
+            class="fa fa-search"
+            id="search-icon"
+            onclick="performSearch()"
+          ></i>
+          <i id="menu-btn" class="fa-solid fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Dimmed overlay (hidden initially) -->
+    <div id="dimmed-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <ul>
+        <li><a href="Loginbereich.html">Ausloggen</a></li>
+        <li><a href="Bibliotheksressourcen.html">Ressourcen buchen</a></li>
+        <li><a href="studienraeume.html">Räume buchen</a></li>
+      </ul>
+    </aside>
+
+    <!-- Hauptbereich mit Kategorien -->
+    <main>
+      <div class="main-content">
+        <!-- Kategorien Buttons -->
+        <section class="events-section">
+          <div class="category-buttons">
+            <button onclick="toggleEvents('guest_lectures')">
+              Gastvorträge
+            </button>
+            <button onclick="toggleEvents('seminars')">Seminare</button>
+            <button onclick="toggleEvents('workshops')">Workshops</button>
+          </div>
+
+          <!-- Ausklappbare Tabellen für Gastvorträge -->
+          <div id="guest_lectures" class="event-list" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gastvortag</th>
+                  <th>Datum</th>
+                  <th>Uhrzeit</th>
+                  <th>Vortragender</th>
+                  <th>Max. Teilnehmer</th>
+                  <th>Freie Plätze</th>
+                  <th>Buchen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Innovation im digitalen Zeitalter</td>
+                  <td>25. Oktober 2024</td>
+                  <td>18:00 - 20:00 Uhr</td>
+                  <td>Dr. Max Mustermann</td>
+                  <td>50</td>
+                  <td>5</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(1, 'Innovation im digitalen Zeitalter')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Künstliche Intelligenz in der Praxis</td>
+                  <td>5. November 2024</td>
+                  <td>14:00 - 16:00 Uhr</td>
+                  <td>Prof. Anna Schmidt</td>
+                  <td>100</td>
+                  <td>0</td>
+                  <td>
+                    <button class="book-button unavailable" disabled>
+                      Nicht verfügbar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Die Zukunft der Arbeit</td>
+                  <td>12. November 2024</td>
+                  <td>10:00 - 12:00 Uhr</td>
+                  <td>Dr. Laura Becker</td>
+                  <td>75</td>
+                  <td>10</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(3, 'Die Zukunft der Arbeit')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Digitale Transformation im Mittelstand</td>
+                  <td>19. November 2024</td>
+                  <td>16:00 - 18:00 Uhr</td>
+                  <td>Herr Peter Müller</td>
+                  <td>60</td>
+                  <td>20</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(4, 'Digitale Transformation im Mittelstand')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Blockchain und ihre Anwendungen</td>
+                  <td>26. November 2024</td>
+                  <td>18:00 - 20:00 Uhr</td>
+                  <td>Frau Lisa Hoffmann</td>
+                  <td>50</td>
+                  <td>0</td>
+                  <td>
+                    <button class="book-button unavailable" disabled>
+                      Nicht verfügbar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Datenschutz und Datensicherheit</td>
+                  <td>3. Dezember 2024</td>
+                  <td>15:00 - 17:00 Uhr</td>
+                  <td>Herr Karl Richter</td>
+                  <td>80</td>
+                  <td>25</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(6, 'Datenschutz und Datensicherheit')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Die Rolle von Daten in der Entscheidungsfindung</td>
+                  <td>10. Dezember 2024</td>
+                  <td>14:00 - 16:00 Uhr</td>
+                  <td>Prof. Julia Weiß</td>
+                  <td>90</td>
+                  <td>5</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(7, 'Die Rolle von Daten in der Entscheidungsfindung')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Ausklappbare Tabellen für Seminare -->
+          <div id="seminars" class="event-list" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Seminar</th>
+                  <th>Datum</th>
+                  <th>Uhrzeit</th>
+                  <th>Vortragender</th>
+                  <th>Max. Teilnehmer</th>
+                  <th>Freie Plätze</th>
+                  <th>Buchen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Datenschutz in der modernen IT</td>
+                  <td>15. November 2024</td>
+                  <td>10:00 - 12:00 Uhr</td>
+                  <td>Dr. Peter Schmitt</td>
+                  <td>40</td>
+                  <td>0</td>
+                  <td>
+                    <button class="book-button unavailable" disabled>
+                      Nicht verfügbar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Agile Methoden im Projektmanagement</td>
+                  <td>22. November 2024</td>
+                  <td>14:00 - 16:00 Uhr</td>
+                  <td>Frau Julia Klein</td>
+                  <td>60</td>
+                  <td>15</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(9, 'Agile Methoden im Projektmanagement')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Einführung in die Blockchain-Technologie</td>
+                  <td>29. November 2024</td>
+                  <td>09:00 - 11:00 Uhr</td>
+                  <td>Dr. Thomas Fischer</td>
+                  <td>50</td>
+                  <td>5</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(10, 'Einführung in die Blockchain-Technologie')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Effektive Kommunikation im Team</td>
+                  <td>6. Dezember 2024</td>
+                  <td>13:00 - 15:00 Uhr</td>
+                  <td>Frau Julia Müller</td>
+                  <td>30</td>
+                  <td>0</td>
+                  <td>
+                    <button class="book-button unavailable" disabled>
+                      Nicht verfügbar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Digitale Führungstechniken</td>
+                  <td>13. Dezember 2024</td>
+                  <td>11:00 - 13:00 Uhr</td>
+                  <td>Herr Oliver Stein</td>
+                  <td>20</td>
+                  <td>10</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(12, 'Digitale Führungstechniken')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Visuelle Gestaltung von Präsentationen</td>
+                  <td>20. Dezember 2024</td>
+                  <td>14:00 - 16:00 Uhr</td>
+                  <td>Frau Lisa Meyer</td>
+                  <td>25</td>
+                  <td>5</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(13, 'Visuelle Gestaltung von Präsentationen')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Strategisches Marketing im digitalen Zeitalter</td>
+                  <td>27. Dezember 2024</td>
+                  <td>15:00 - 17:00 Uhr</td>
+                  <td>Prof. Anna Winter</td>
+                  <td>35</td>
+                  <td>0</td>
+                  <td>
+                    <button class="book-button unavailable" disabled>
+                      Nicht verfügbar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Ausklappbare Tabellen für Workshops -->
+          <div id="workshops" class="event-list" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Workshop</th>
+                  <th>Datum</th>
+                  <th>Uhrzeit</th>
+                  <th>Vortragender</th>
+                  <th>Max. Teilnehmer</th>
+                  <th>Freie Plätze</th>
+                  <th>Buchen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Webentwicklung für Einsteiger</td>
+                  <td>30. November 2024</td>
+                  <td>09:00 - 17:00 Uhr</td>
+                  <td>Herr Peter Wagner</td>
+                  <td>20</td>
+                  <td>10</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(14, 'Webentwicklung für Einsteiger')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Grafikdesign Grundlagen</td>
+                  <td>7. Dezember 2024</td>
+                  <td>10:00 - 16:00 Uhr</td>
+                  <td>Frau Sarah Schmidt</td>
+                  <td>15</td>
+                  <td>0</td>
+                  <td>
+                    <button class="book-button unavailable" disabled>
+                      Nicht verfügbar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fortgeschrittene Python Programmierung</td>
+                  <td>14. Dezember 2024</td>
+                  <td>09:00 - 15:00 Uhr</td>
+                  <td>Dr. Frank Müller</td>
+                  <td>25</td>
+                  <td>5</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(16, 'Fortgeschrittene Python Programmierung')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>UX/UI Design</td>
+                  <td>21. Dezember 2024</td>
+                  <td>10:00 - 14:00 Uhr</td>
+                  <td>Frau Lisa Koch</td>
+                  <td>30</td>
+                  <td>15</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(17, 'UX/UI Design')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Datenanalyse mit Excel</td>
+                  <td>28. Dezember 2024</td>
+                  <td>11:00 - 17:00 Uhr</td>
+                  <td>Dr. Max Richter</td>
+                  <td>40</td>
+                  <td>10</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(18, 'Datenanalyse mit Excel')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Einführung in künstliche Intelligenz</td>
+                  <td>4. Januar 2025</td>
+                  <td>09:00 - 17:00 Uhr</td>
+                  <td>Herr Oliver Braun</td>
+                  <td>50</td>
+                  <td>0</td>
+                  <td>
+                    <button class="book-button unavailable" disabled>
+                      Nicht verfügbar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Digitales Marketing</td>
+                  <td>11. Januar 2025</td>
+                  <td>10:00 - 15:00 Uhr</td>
+                  <td>Frau Anna Lang</td>
+                  <td>35</td>
+                  <td>5</td>
+                  <td>
+                    <button
+                      class="book-button available"
+                      onclick="bookResource(19, 'Digitales Marketing')"
+                    >
+                      Buchen
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer Bereich -->
+    <footer>
+      <ul>
+        <li><a href="Impressum.html">Impressum</a></li>
+        <li><a href="Datenschutz.html">Datenschutz</a></li>
+        <li><a href="Kontakt.html">Kontakt</a></li>
+      </ul>
+      <p>© 2024 Uni Reserve. Alle Inhalte unterliegen unserem Copyright.</p>
+    </footer>
+
+    <!-- Einbindung des JS-Codes -->
+    <script src="script.js"></script>
+    <!-- Verlinkung der externen JS-Datei -->
+    <script src="navigator.js"></script>
+    <!--Sticky Nav, Profil Button-->
+    <script src="suchen.js"></script>
+    <!--Suchlogik und Input verhalten-->
+    <script src="smallSidebar.js"></script>
+    <!--Sidebar für kleine Ansicht-->
+  </body>
+</html>

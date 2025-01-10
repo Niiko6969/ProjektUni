@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - UNIRESERVE</title>
+    <link rel="stylesheet" href="header.css">
+    <script src="https://kit.fontawesome.com/2ec6dc2d1f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header-Bereich mit Hauptüberschrift -->
+
+   <div class="header-container">
+        <div id="blurr" class="blurr" style="display: none;"></div> <!--Blurr für search input-->
+        <!--Großer Nav-->
+        <nav class="nav-large">
+            <div class="nav-img" onclick="window.location.href= 'Startseite.html'">
+                <img src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png" alt="UniReserve Logo" class="logo-image">
+            </div>
+            
+            <div class="nav-text">
+                    <a class="dropdown-link" href="Dienstleistungen.html">Verfügbare Veranstaltungen</a>
+                <a href="Bibliotheksressourcen.html">Bibliotheksressourcen buchen</a>
+                <a href="studienraeume.html">Studienräume buchen</a>
+            </div>
+
+            <input type="text" id="search-input" class ="searchinput" placeholder="Suche...">
+                <i class="fa fa-search " id="search-icon" onclick="performSearch()"></i>
+
+            <div class="nav-symbol">
+                <i class="fa fa-user"></i>
+                <ul class="user-content">
+                    <button class="user-button" onclick="window.location.href='Loginbereich.html'">ausloggen</button>
+                </ul>
+            </div>
+        </nav>
+
+        <nav class="nav-small">
+            <div class="nav-img" onclick="window.location.href='Startseite.html'">
+                <img src="C:\Users\fatim\OneDrive\Bilder\Neuer Ordner\image1.png" alt="UniReserve Logo" class="logo-image">
+            </div>
+            <input type="text" id="search-input-small" class ="searchinput" placeholder="Suche...">
+            <div class="nav-symbol">
+                <i class="fa fa-search" id="search-icon" onclick="performSearch()"></i>
+                <i id="menu-btn" class="fa-solid fa-bars"></i>
+            </div>    
+        </nav>  
+    </div>
+    <!-- Dimmed overlay (hidden initially) -->
+    <div id="dimmed-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="#">Ausloggen</a></li>
+            <li><a href="#">Verlauf</a></li>
+            <li><a href="#">Verfügbare Events</a></li>
+            <li><a href="#">Ressourcen buchen</a></li>
+        </ul>
+    </aside>
+
+    <header>
+        <h2>Impressum</h2>
+    </header>
+    <main>
+        <section>
+            <h3>Angaben gemäß § 5 TMG</h3>
+            <p><br>
+            <p>UNIRESERVE GmbH<br>
+            Musterstraße 1<br>
+            12345 Musterstadt<br></p>
+            <p><br></p>
+
+            <h3>Vertreten durch:</h3>
+            <p><br>
+            <p>Patrick Müller (Geschäftsführer)</p>
+            <p><br></p>
+
+            <h3>Kontakt</h3>
+            <p><br>
+            <p>Telefon: +49 123 456789<br>
+            E-Mail: info@unireserve.de</p>
+            <p><br></p>
+
+            <h3>Registereintrag</h3>
+            <p><br>
+            <p>Eintragung im Handelsregister.<br>
+            Registergericht: Amtsgericht Musterstadt<br>
+            Registernummer: HRB 12345</p>
+            <p><br></p>
+
+            <h3>Umsatzsteuer-ID</h3>
+            <p><br>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz:<br>
+            DE123456789</p>
+            <p><br></p>
+
+            <h3>Verantwortlich für den Inhalt</h3>
+            <p><br>
+            <p>Herman Beige<br>
+            UNIRESERVE GmbH<br>
+            Musterstraße 1<br>
+            12345 Musterstadt<br></p>
+            <p><br></p>
+
+        </section>
+    </main>
+
+    <footer>
+
+    <ul>
+        <li><a href="Impressum.html">Impressum</a></li>
+        <li><a href="Datenschutz.html">Datenschutz</a></li>
+        <li><a href="Kontakt.html">Kontakt</a></li>
+    </ul>
+    <p>© 2024 Uni Reserve. Alle Inhalte unterliegen unserem Copyright.</p>
+</footer>
+
+   <script src="navigator.js"></script> <!--Sticky Nav, Profil Button-->
+<script src="suchen.js"></script> <!--Suchlogik und Input verhalten-->
+<script src="smallSidebar.js"></script> <!--Sidebar für kleine Ansicht-->
+<footer>
+</body>
+</html>

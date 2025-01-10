@@ -1,0 +1,546 @@
+/* Allgemeines Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+/*Blurr wenn auf suchleiste*/
+.blurr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dimmer Effekt */
+    z-index: 999; /* Über anderen Inhalten */
+}
+body {
+    background: linear-gradient(135deg, #e0f7fa, #81dcb3, #42aaff); /* Kreativer Hintergrund mit Farbverlauf */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #333; /* Dunkle Schrift für bessere Lesbarkeit und an die Website anpassen */
+
+    /*Hintergrundbild auf gesamtem Bildschirm*/
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+:root {
+    --blue: #42aaff;
+    --green: #81dcb3;
+    --dark-blue: #0c4c8a;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+i {
+    color: white;
+    font-size: 1.2em; /* Icons etwas größer machen */
+}
+/*Header Design*/
+.header-container{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+/* Textstil für logo */
+.header-text {
+    font-family: Arial, sans-serif; /* Ähnliche Schriftart wie im Logo */
+    font-style: italic; /* Kursiver Stil */
+    font-weight: 700;
+    font-size: 2rem;
+    color: #ffffff; /* Weißer Text */
+    text-transform: uppercase; /* Alle Buchstaben groß */
+    letter-spacing: 0.05rem; /* Leichter Abstand zwischen Buchstaben */
+    position: relative;
+    margin-right: 20px;
+    
+}
+/*Logo Bereich*/
+.nav-img{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.nav-img:hover{
+    cursor: pointer;
+}
+
+/*Navigationsmenu (groß)*/
+nav.nav-large {
+    display: flex;              /*flexbox for alignment*/       
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    background-color: var(--dark-blue); /* Hintergrundfarbe für den Big Nav */
+    padding-right: 20px;
+    height: 70px;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2px;
+}
+/* Bildgröße im Header */
+.logo-image {
+    margin-top: 16px;
+    align-items: center;
+    height: 100px;
+}
+/*textbereich im nav*/
+.nav-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;           /* Zentriert den Text horizontal */
+    width: 500px;
+    padding-right: 30px;
+    white-space: nowrap; /*kein Zeilenumbruch*/
+    margin-left: 0;
+}
+/*Symbole im nav*/
+.nav-symbol {
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+/*User Buttons*/
+.user-button{
+    width: 130px;
+    align-items: center;
+    margin-bottom:5px;
+	}
+
+.nav-text, .nav-symbol {
+    display: flex;
+}
+nav a, nav i {
+    margin-left: 20px;
+    color: white; /* Textfarbe für Links */
+    cursor: pointer;
+}
+i:hover{
+    color: #5c616d;
+}
+
+/* Navigationsmenu (klein) */
+nav.nav-small {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    justify-content: flex-end;
+    background-color: var(--dark-blue); /* Hintergrundfarbe für den Small Nav */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    padding-right: 20px;
+    display: none; /*initially hidden*/
+    height: 70px;
+}
+/* sticky nav */
+.header-container.sticky, nav.nav-small.sticky {
+    position: fixed;
+    top:0;
+    width: 100%;    
+    z-index: 1000; /* Make sure it's above other elements */
+    background-color: var(--dark-blue); /* Optional: um die Originalfarbe anzupassen */
+}
+
+/* Kacheln zum ausklappen von sidebar */
+#menu-btn {
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1002; /* Above the sidebar */
+}
+#menu-btn:hover{
+    color: #5c616d;
+}
+
+/*Searchbar*/
+.hodden-small,
+.hidden {
+    display: none;
+}
+#search-containter-small,
+#search-container {
+    position: absolute;
+    top: 90px;
+    right: 80px;
+
+}
+
+#search-container {
+    top: 90px;
+    right: 80px;
+}
+
+#search-input-small,
+#search-input {
+    padding-left: 10px;
+    margin-left: 15px;
+    width: 100%;
+    min-width: 300px;
+    max-width: 500px;
+    border: 1px #000000 solid;
+    border-radius: 0.5em;
+    text-align: left;
+    background-color: #ffffff; /* Hintergrundfarbe anpassen */
+    outline:solid; /* Kein Outline */
+    outline-width: 2px;
+    color: rgb(0, 0, 0);
+    height: 45px;
+    z-index: 1000;
+}
+#search-input-small{
+    max-width: 600px;
+    margin-left: 2px;
+}
+
+#search-button {
+    position: relative;
+    border-radius: 3px; /* Kleineren Border-Radius */
+    outline: none; /* Kein Outline */
+    background-color: rgb(30, 30, 30); /* Hintergrundfarbe anpassen */
+    color: rgb(0, 0, 0);
+    height: 30px;
+    width: auto;
+    top: 0px;
+    transition: background-color 0.3s; /* Sanfter Übergang */
+}
+#search-icon{
+    z-index: 1000;;
+}
+
+input::placeholder {
+    color: rgb(0, 0, 0);
+}
+#search-button .fa-solid.fa-magnifying-glass {
+    position: relative;
+    margin: 0px;
+    font-size: 1.2em; /* Suchsymbol etwas größer machen */
+}
+#search-button .fa-solid.fa-magnifying-glass:hover {
+    color: gray;
+}
+
+/* Sidebar für kleine Ansicht */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Sidebar hidden */
+    width: 250px;
+    height: 100%;
+    background-color: #0a3d6a; /* Hintergrundfarbe der Sidebar */
+    overflow-x: hidden;
+    color: white;
+    transition: right 0.4s ease;
+    z-index: 1001; /* Über dem Dim-Overlay */
+}
+
+.sidebar ul {
+    list-style-type: none; /*aufzählung ohne symbole*/
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #333; /* Hoverfarbe für Sidebar Links */
+}
+
+/* Dimmed Overlay bei öffnen des Sidebar */
+#dimmed-overlay {
+    position: fixed;
+    top: 0; /* Dimmt ganze Seite */
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Initially hidden */
+    z-index: 1001; /* Directly under the sidebar */
+}
+/* Sidebar open */
+.sidebar.open {
+    right: 0;
+}
+/* Show dimmed overlay */
+#dimmed-overlay.show {
+    display: block;
+}
+.user-content {
+    padding: 0.2em 0.5em;
+    background-color: #0a3d6a;
+    border: 1px #363a43 solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    color: #d6d9e2;
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    display: none; /* Standardmäßig verborgen */
+    z-index: 1;
+	top: 250%;             
+    left: -15px;              
+    width: 150px;
+    background-color: #252d33;
+}
+/*wenn aufgeklappt*/
+.user-content-open {
+	display: block; 
+}
+header {
+    background-color: transparent; /* Header hat keinen Hintergrund, der sich von der Seite abhebt */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+
+header .logo img {
+    width: 100px; /* Logo etwas größer */
+	allign-items: center;
+	text-align: center;
+}
+header h1 {
+    font-size: 3rem; /* Großes Logo und Website-Name */
+    color: var(--dark-blue); /* Dunkelblauer Text für Titel */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--dark-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Text in Farbverlauf */
+    text-align: center;
+    margin-right: 200px;
+}
+
+label.title {
+	text-align: center;
+	font-size: 2rem; /* Großes Logo und Website-Name */
+    color: var(--dark-blue); /* Dunkelblauer Text für Titel */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+button {
+    background-color: var(--dark-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #005999;
+}
+
+.confirmation-section {
+	text-align: center;
+	color: var(--dark-blue); /* Dunkelblauer Text für Titel */
+	font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--dark-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Text in Farbverlauf */
+	margin-top: 100px;
+}
+
+.button-container {
+    text-align: center; /* Zentriert den Button */
+    margin-top: 100px; /* Abstand über dem Button */
+}
+
+.search-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #E6F3FF;
+}
+
+.search-section input {
+    padding: 10px;
+    width: 60%;
+    max-width: 500px;
+    font-size: 1rem;
+    border: 2px solid #0082C9;
+    border-radius: 5px;
+}
+
+.search-section button {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    background-color: #0082C9;
+}
+
+main {
+    padding: 50px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+footer ul li {
+    margin: 0 15px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+footer a:hover{
+    text-decoration: underline;
+}
+/*responsive footer*/
+@media (max-width : 992px ){
+    footer ul{
+        display: block;
+        padding: 15px; /* Größeres Padding auf kleinen Bildschirmen */
+        margin-bottom: 10px; /* Mehr Abstand zwischen den Listenelementen */
+    }
+    footer ul li {
+        margin-bottom: 9px;
+    }
+}
+
+
+/* Raumliste und Filter für Studienräume */
+.filter-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filter-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+	background-color: #f9f9f9;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.no-results {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+/* Responsive Design */
+@media (max-width : 992px ){
+    .tiles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tile {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+/* Responsive Design */
+@media (max-width: 1100px){
+    .header-text{
+        display: none;
+    }
+}
+@media (max-width: 950px) {
+    nav.nav-large {
+        display: none; /* Big Nav auf kleinen Bildschirmen ausblenden */
+    }
+
+    nav.nav-small {
+        display: flex; /* Small Nav bei kleinen Bildschirmen einblenden */
+    }
+
+    .nav-text, .nav-symbol {
+        width: auto; /* Flexibilität für die kleinen Navs */
+    }
+
+    /* Sidebar auf kleinen Bildschirmen */
+    .sidebar {
+        width: 200px; /* Sidebar Breite */
+    }
+    .zeitraum{
+        display: none;
+    }
+    .nav-img{
+        padding: 2px;
+        margin-left: 3px;
+    }
+    .nav-img img{
+        height: 75px;
+    }
+
+}

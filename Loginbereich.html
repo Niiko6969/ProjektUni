@@ -1,0 +1,88 @@
+<html lang="de">
+  <header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNIRESERVE - Login</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+      //nach dem Login ein Pop-up anzuzeigen
+      function showSuccessMessage() {
+        alert("Erfolgreich eingeloggt!");
+        // Benutzer auf die Startseite weiterleiten
+        window.location.href = "Startseite.html";
+      }
+
+      // Inline JavaScript für die Vorschau
+      document.addEventListener("DOMContentLoaded", function () {
+        //verzögerter Zoom-Effekt
+        setTimeout(() => {
+          //hole elemente durch id
+          const preview = document.getElementById("preview");
+          const login = document.getElementById("login");
+          const logo = document.querySelector(".preview-content .logo img");
+
+          // Nach einer kurzen Verzögerung den Übergang zur Login-Seite
+          setTimeout(() => {
+            preview.style.opacity = "0"; //Vorschau unsichtbar
+            login.style.opacity = "1"; //Login-Formular sichtbar
+            //klasse hinzufügen und entfernen um Vorschau unsichtbar, Login sichtbar
+            preview.classList.add("hidden");
+            login.classList.remove("hidden");
+          }, 500); // Wartezeit
+        }, 3000);
+      });
+    </script>
+  </header>
+  <body>
+    <div id="preview" class="overlay">
+      <div class="preview-content">
+        <h1>Willkommen auf unserem Buchungsportal UNIRESERVE</h1>
+        <p>„Wo Planung auf Innovation trifft!“</p>
+        <div class="logo">
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/image1.png"
+            alt="UNI RESERVE Logo"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- zeigt das Login-Formular an -->
+    <div id="login" class="hidden">
+      <header>
+        <div class="logo">
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/image1.png"
+            alt="UNI RESERVE Logo"
+          />
+          <h1>UNI RESERVE</h1>
+        </div>
+      </header>
+
+      <div class="login-container">
+        <form onsubmit="showSuccessMessage(); return false;" method="POST">
+          <!-- Formular für den Login -->
+          <input
+            type="text"
+            name="username"
+            placeholder="Benutzername"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Passwort"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer Bereich -->
+    <footer>
+      <p>© 2024 Uni Reserve. Alle Inhalte unterliegen unserem Copyright.</p>
+    </footer>
+  </body>
+</html>

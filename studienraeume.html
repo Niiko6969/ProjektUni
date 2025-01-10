@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Studienräume</title>
+    <!-- Einbindung der externen CSS-Datei -->
+    <link rel="stylesheet" href="stylesRaeume.css" />
+    <script
+      src="https://kit.fontawesome.com/2ec6dc2d1f.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- Header-Bereich mit Hauptüberschrift -->
+
+    <div class="header-container">
+      <div id="blurr" class="blurr" style="display: none"></div>
+      <!--Blurr für search input-->
+      <!--Großer Nav-->
+      <nav class="nav-large">
+        <div class="nav-img" onclick="window.location.href= 'Startseite.html'">
+          <span class="header-text">UNI RESERVE</span>
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png"
+            alt="UniReserve Logo"
+            class="logo-image"
+          />
+        </div>
+
+        <div class="nav-text">
+          <a class="dropdown-link" href="Dienstleistungen.html"
+            >Verfügbare Veranstaltungen</a
+          >
+          <a href="Bibliotheksressourcen.html">Bibliotheksressourcen buchen</a>
+        </div>
+
+        <input
+          type="text"
+          id="search-input"
+          class="searchinput"
+          placeholder="Suche..."
+        />
+        <i class="fa fa-search" id="search-icon" onclick="performSearch()"></i>
+
+        <div class="nav-symbol">
+          <i class="fa fa-user"></i>
+          <ul class="user-content">
+            <button
+              class="user-button"
+              onclick="window.location.href='Benutzerprofl.html'"
+            >
+              Profil
+            </button>
+            <button
+              class="user-button"
+              onclick="window.location.href='Loginbereich.html'"
+            >
+              ausloggen
+            </button>
+          </ul>
+        </div>
+      </nav>
+
+      <nav class="nav-small">
+        <div class="nav-img" onclick="window.location.href='Startseite.html'">
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png"
+            alt="UniReserve Logo"
+            class="logo-image"
+          />
+        </div>
+        <input
+          type="text"
+          id="search-input-small"
+          class="searchinput"
+          placeholder="Suche..."
+        />
+        <div class="nav-symbol">
+          <i
+            class="fa fa-search"
+            id="search-icon"
+            onclick="performSearch()"
+          ></i>
+          <i id="menu-btn" class="fa-solid fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+    <!-- Dimmed overlay (hidden initially) -->
+    <div id="dimmed-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <ul>
+        <li><a href="Loginbereich.html">Ausloggen</a></li>
+        <li><a href="Bibliotheksressourcen.html">Ressourcen buchen</a></li>
+        <li><a href="Dienstleistungen.html">Verfügbare Events</a></li>
+      </ul>
+          
+    </aside>
+    <div class="main">
+      <!-- Filterbereich zur Auswahl von Fakultät, Studiengang und Anzahl der Plätze -->
+      <section class="filter-section">
+        <label class="title">Studienräume</label>
+        <label for="fakultät">Fakultät</label>
+        <select id="fakultät" onchange="filterRooms()">
+          <option value="">Alle Fakultäten</option>
+        </select>
+
+        <label for="studiengang">Dekanate / Studiengänge</label>
+        <select id="studiengang" onchange="filterRooms()">
+          <option value="">Alle Studiengänge</option>
+        </select>
+
+        <label for="plätze">Plätze</label>
+        <select id="plätze" onchange="filterRooms()">
+          <option value="">Alle Größen</option>
+        </select>
+
+        <button id="reset-button" onclick="resetFilters()">
+          Filter zurücksetzen
+        </button>
+      </section>
+
+      <!-- Bereich für die Tabelle mit den Räumen -->
+      <section class="table-section">
+        <table id="room-table">
+          <thead>
+            <tr>
+              <th>Raum-Nr.</th>
+              <th>Dekanate / Studiengänge</th>
+              <th>Plätze</th>
+              <th>Fakultät</th>
+              <th>Buchen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Räume werden hier durch JavaScript dynamisch eingefügt -->
+          </tbody>
+        </table>
+      </section>
+      <main>
+        <p class="no-results" id="no-results" style="display: none">
+          Keine Räume entsprechen den ausgewählten Filtern.
+        </p>
+
+        <script>
+          // Liste aller Räume mit ihren Eigenschaften
+          const rooms = [
+            {
+              raumNr: "138 B",
+              dekanat: "Dienstleistung & Handel",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "137.1 B",
+              dekanat: "Dienstleistung & Handel",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "268 C",
+              dekanat: "Dienstleistung & Handel",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "277 C",
+              dekanat: "Dienstleistung & Handel",
+              plätze: 41,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "308.3 D",
+              dekanat: "Dienstleistung & Handel",
+              plätze: 27,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "311 D",
+              dekanat: "Dienstleistung & Handel",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "313 D",
+              dekanat: "Dienstleistung & Handel",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "110 A",
+              dekanat: "Finanzdienstleistungen",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "116 A",
+              dekanat: "Finanzdienstleistungen",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "210 A",
+              dekanat: "Finanzdienstleistungen",
+              plätze: 24,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "214 A",
+              dekanat: "Finanzdienstleistungen",
+              plätze: 30,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "051 B",
+              dekanat: "Finanzdienstleistungen",
+              plätze: 42,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "140 B",
+              dekanat: "Finanzdienstleistungen",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "178 C",
+              dekanat: "Finanzdienstleistungen",
+              plätze: 43,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "104 A",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "122 A",
+              dekanat: "Internationales & Logistik",
+              plätze: 24,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "101 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "102 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "103D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "104 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "109 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 27,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "112 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "113 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "115 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "117 D",
+              dekanat: "Internationales & Logistik",
+              plätze: 36,
+              fakultät: "Wirtschaft",
+            },
+            {
+              raumNr: "001 B",
+              dekanat: "Informatik",
+              plätze: 20,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "003 B",
+              dekanat: "Informatik",
+              plätze: 20,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "070 C",
+              dekanat: "Informatik",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "160 C",
+              dekanat: "Informatik",
+              plätze: 40,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "161 C",
+              dekanat: "Informatik",
+              plätze: 64,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "173 C",
+              dekanat: "Informatik",
+              plätze: 54,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "179 C",
+              dekanat: "Informatik",
+              plätze: 56,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "180 C",
+              dekanat: "Informatik",
+              plätze: 72,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "269 C",
+              dekanat: "Informatik",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "278 C",
+              dekanat: "Informatik",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "279 C",
+              dekanat: "Informatik",
+              plätze: 72,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "010 A",
+              dekanat: "Informatik",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "022 A",
+              dekanat: "Informatik",
+              plätze: 24,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "105 A",
+              dekanat: "Informatik",
+              plätze: 24,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "106 A",
+              dekanat: "Maschinenbau",
+              plätze: 24,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "107 A",
+              dekanat: "Maschinenbau",
+              plätze: 24,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "121 A",
+              dekanat: "Maschinenbau",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "209 A",
+              dekanat: "Maschinenbau",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "223 A",
+              dekanat: "Maschinenbau",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "135 B",
+              dekanat: "Maschinenbau",
+              plätze: 30,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "152 B",
+              dekanat: "Maschinenbau",
+              plätze: 30,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "153 B",
+              dekanat: "Maschinenbau",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "238 B",
+              dekanat: "Maschinenbau",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "239 B",
+              dekanat: "Maschinenbau",
+              plätze: 36,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "255 B",
+              dekanat: "Maschinenbau",
+              plätze: 18,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "003 D",
+              dekanat: "Maschinenbau",
+              plätze: 72,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "010 D",
+              dekanat: "Maschinenbau",
+              plätze: 72,
+              fakultät: "Technik",
+            },
+            {
+              raumNr: "036 B",
+              dekanat: "Maschinenbau",
+              plätze: 43,
+              fakultät: "Technik",
+            },
+          ];
+
+          let filteredRooms = [...rooms];
+
+          document.addEventListener("DOMContentLoaded", function () {
+            updateDropdowns();
+            displayRooms(rooms);
+          });
+
+          function updateDropdowns() {
+            const fakultätSelect = document.getElementById("fakultät");
+            const studiengangSelect = document.getElementById("studiengang");
+            const plätzeSelect = document.getElementById("plätze");
+
+            const selectedFakultät = fakultätSelect.value;
+            const selectedStudiengang = studiengangSelect.value;
+            const selectedPlätze = plätzeSelect.value;
+
+            const availableRooms = rooms.filter((room) => {
+              return (
+                (!selectedFakultät || room.fakultät === selectedFakultät) &&
+                (!selectedStudiengang ||
+                  room.dekanat === selectedStudiengang) &&
+                (!selectedPlätze || room.plätze >= selectedPlätze)
+              );
+            });
+
+            const uniqueFakultäten = [
+              ...new Set(availableRooms.map((room) => room.fakultät)),
+            ].sort((a, b) => a.localeCompare(b));
+            fakultätSelect.innerHTML =
+              '<option value="">Alle Fakultäten</option>';
+            uniqueFakultäten.forEach((fakultät) => {
+              const option = document.createElement("option");
+              option.value = fakultät;
+              option.text = fakultät;
+              fakultätSelect.appendChild(option);
+            });
+            fakultätSelect.value = selectedFakultät;
+
+            const uniqueStudiengänge = [
+              ...new Set(availableRooms.map((room) => room.dekanat)),
+            ].sort((a, b) => a.localeCompare(b));
+            studiengangSelect.innerHTML =
+              '<option value="">Alle Studiengänge</option>';
+            uniqueStudiengänge.forEach((studiengang) => {
+              const option = document.createElement("option");
+              option.value = studiengang;
+              option.text = studiengang;
+              studiengangSelect.appendChild(option);
+            });
+            studiengangSelect.value = selectedStudiengang;
+
+            const uniquePlätze = [
+              ...new Set(availableRooms.map((room) => room.plätze)),
+            ].sort((a, b) => a - b);
+            plätzeSelect.innerHTML = '<option value="">Alle Größen</option>';
+            uniquePlätze.forEach((platz) => {
+              const option = document.createElement("option");
+              option.value = platz;
+              option.text = platz;
+              plätzeSelect.appendChild(option);
+            });
+            plätzeSelect.value = selectedPlätze;
+          }
+
+          function displayRooms(filteredRooms) {
+            const tableBody = document
+              .getElementById("room-table")
+              .getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = "";
+
+            if (filteredRooms.length === 0) {
+              document.getElementById("no-results").style.display = "block";
+              return;
+            }
+
+            document.getElementById("no-results").style.display = "none";
+            filteredRooms.forEach((room) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${room.raumNr}</td>
+                <td>${room.dekanat}</td>
+                <td>${room.plätze}</td>
+                <td>${room.fakultät}</td>
+                <!-- Button mit korrektem Link zur Bestätigungsseite -->
+                <td><button class="confirm-button">Bestätigen</button></td>
+            `;
+              tableBody.appendChild(row);
+            });
+
+            document.querySelectorAll(".confirm-button").forEach((button) => {
+              button.addEventListener("click", function () {
+                window.location.href = "studienraumeBestaetigung.html";
+              });
+            });
+          }
+
+          function filterRooms() {
+            const fakultät = document.getElementById("fakultät").value;
+            const studiengang = document.getElementById("studiengang").value;
+            const plätze = document.getElementById("plätze").value;
+
+            filteredRooms = rooms.filter((room) => {
+              return (
+                (!fakultät || room.fakultät === fakultät) &&
+                (!studiengang || room.dekanat === studiengang) &&
+                (!plätze || room.plätze >= plätze)
+              );
+            });
+
+            updateDropdowns();
+            displayRooms(filteredRooms);
+          }
+
+          function resetFilters() {
+            document.getElementById("fakultät").value = "";
+            document.getElementById("studiengang").value = "";
+            document.getElementById("plätze").value = "";
+
+            filteredRooms = [...rooms];
+            updateDropdowns();
+            displayRooms(rooms);
+          }
+        </script>
+      </main>
+    </div>
+    <!-- Footer Bereich -->
+    <footer>
+      <ul>
+        <li><a href="Impressum.html">Impressum</a></li>
+        <li><a href="Datenschutz.html">Datenschutz</a></li>
+        <li><a href="Kontakt.html">Kontakt</a></li>
+      </ul>
+      <p>© 2024 Uni Reserve. Alle Inhalte unterliegen unserem Copyright.</p>
+    </footer>
+    <script src="navigator2.js"></script>
+    <!--Sticky Nav, Profil Button-->
+    <script src="suchen.js"></script>
+    <!--Suchlogik und Input verhalten-->
+    <script src="smallSidebar.js"></script>
+    <!--Sidebar für kleine Ansicht-->
+  </body>
+</html>

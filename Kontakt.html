@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - UNIRESERVE</title>
+    <link rel="stylesheet" href="header.css">
+    <script> 
+        function showAlert() {
+            alert("Ihre Nachricht wurde erfolgreich gesendet!");
+            }
+        </script>
+    <script src="https://kit.fontawesome.com/2ec6dc2d1f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+   <div class="header-container">
+        <div id="blurr" class="blurr" style="display: none;"></div> <!--Blurr für search input-->
+        <!--Großer Nav-->
+        <nav class="nav-large">
+            <div class="nav-img" onclick="window.location.href= 'Startseite.html'">
+                <img src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png" alt="UniReserve Logo" class="logo-image">
+            </div>
+            
+            <div class="nav-text">
+                <a class="dropdown-link" href="Dienstleistungen.html">Verfügbare Veranstaltungen</a>
+                <a href="Bibliotheksressourcen.html">Bibliotheksressourcen buchen</a>
+                <a href="studienraeume.html">Studienräume buchen</a>
+            </div>
+
+            <input type="text" id="search-input" class ="searchinput" placeholder="Suche...">
+                <i class="fa fa-search " id="search-icon" onclick="performSearch()"></i>
+
+            <div class="nav-symbol">
+                <i class="fa fa-user"></i>
+                <ul class="user-content">
+                    <button class="user-button" onclick="window.location.href='Loginbereich.html'">ausloggen</button>
+                </ul>
+            </div>
+        </nav>
+
+        <nav class="nav-small">
+            <div class="nav-img" onclick="window.location.href='Startseite.html'">
+                <img src="C:\Users\fatim\OneDrive\Bilder\Neuer Ordner\image1.png" alt="UniReserve Logo" class="logo-image">
+            </div>
+            <input type="text" id="search-input-small" class ="searchinput" placeholder="Suche...">
+            <div class="nav-symbol">
+                <i class="fa fa-search" id="search-icon" onclick="performSearch()"></i>
+                <i id="menu-btn" class="fa-solid fa-bars"></i>
+            </div>    
+        </nav>  
+    </div>
+    <!-- Dimmed overlay (hidden initially) -->
+    <div id="dimmed-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="#">Ausloggen</a></li>
+            <li><a href="#">Verlauf</a></li>
+            <li><a href="#">Verfügbare Events</a></li>
+            <li><a href="#">Ressourcen buchen</a></li>
+        </ul>
+    </aside>
+    <header>
+        <h2>Kontakt</h2>
+    </header>
+
+    <main>
+        <section>
+            <p><br>
+            <h3>So erreichen Sie uns</h3>
+            <p>Falls Sie Fragen zu UNIRESERVE haben oder Unterstützung benötigen, können Sie uns gerne kontaktieren.</p>
+            <p><br>
+
+
+            <h3>Telefon</h3>
+            <p>+49 123 456789</p>
+            <p><br>
+
+            <h3>E-Mail</h3>
+            <p><a href="mailto:support@unireserve.de">support@unireserve.de</a></p>
+            <p><br>
+
+            <h3>Adresse</h3>
+            <p>UNIRESERVE GmbH<br>
+            Birkenauerstraße 1<br>
+            35630 Wetzlar</p>
+            <p><br>
+
+            <h3>Kontaktformular</h3>
+            <p><br>
+            <form action="Kontakt.html" method="post"onsubmit="showAlert()">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="email">E-Mail:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="message">Nachricht:</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+                <button type="submit">Absenden</button>
+            </form>
+        </section>
+    </main>
+    
+  <footer>
+
+    <ul>
+        <li><a href="Impressum.html">Impressum</a></li>
+        <li><a href="Datenschutz.html">Datenschutz</a></li>
+        <li><a href="Kontakt.html">Kontakt</a></li>
+    </ul>
+    <p>© 2024 Uni Reserve. Alle Inhalte unterliegen unserem Copyright.</p>
+</footer>
+
+<script src="navigator.js"></script> <!--Sticky Nav, Profil Button-->
+<script src="suchen.js"></script> <!--Suchlogik und Input verhalten-->
+<script src="smallSidebar.js"></script> <!--Sidebar für kleine Ansicht-->
+</body>
+</html>

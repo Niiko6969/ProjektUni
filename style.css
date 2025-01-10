@@ -1,0 +1,423 @@
+/* Gesamtes Styling */
+* {
+    margin: 0; /* Setzt den Standardabstand auf 0 für alle Elemente */
+    padding: 0; /* Setzt den Standardpolster auf 0 für alle Elemente */
+    box-sizing: border-box; /* Macht das Box-Modell einfacher zu handhaben */
+    font-family: 'Arial', sans-serif; /* Setzt die Schriftart für den gesamten Text */
+}
+
+body {
+    background: linear-gradient(135deg, #e0f7fa, #81dcb3, #42aaff); /* Kreativer Hintergrund mit Farbverlauf */
+    min-height: 100vh; /* Mindesthöhe des Viewports für volle Höhe */
+    display: flex; /* Ermöglicht die Verwendung von Flexbox für Layouts */
+    flex-direction: column; /* Stellt sicher, dass die Elemente vertikal angeordnet werden */
+    color: #333; /* Dunkle Schrift für bessere Lesbarkeit */
+}
+
+:root {
+    /* Variablen für Farbcodes */
+    --blue: #42aaff; /* Helles Blau */
+    --green: #81dcb3; /* Helles Grün */
+    --dark-blue: #0c4c8a; /* Dunkelblau für wichtige Texte */
+}
+
+/* Header */
+header {
+    background-color: transparent; /* Header hat keinen Hintergrund */
+    padding: 20px; /* Polsterung für den Header */
+    display: flex; /* Flexbox-Layout für Header */
+    justify-content: space-between; /* Platz zwischen Logo und Navigation */
+    align-items: center; /* Zentriert die Elemente vertikal */
+    flex-wrap: wrap; /* Ermöglicht das Umfließen der Elemente bei kleiner Bildschirmgröße */
+    text-align: center; /* Zentriert den Text im Header */
+}
+
+header .logo {
+    display: flex; /* Flexbox-Layout für Logo */
+    align-items: center; /* Zentriert das Logo vertikal */
+    margin: auto; /* Zentriert das Logo horizontal */
+    margin-left: 500px; /* Fügt einen linken Rand hinzu */
+}
+
+header .logo img {
+    width: 100px; /* Größe des Logos */
+    margin-right: 20px; /* Abstand zwischen Logo und Titel */
+}
+
+header h1 {
+    font-size: 3rem; /* Große Schriftgröße für den Titel */
+    color: var(--dark-blue); /* Verwendung der dunkelblauen Variablen */
+    font-weight: bold; /* Fettgedruckter Text */
+    text-transform: uppercase; /* Großbuchstaben für den Titel */
+    letter-spacing: 2px; /* Abstand zwischen den Buchstaben */
+    background: var(--dark-blue); /* Dunkelblauer Hintergrund */
+    -webkit-background-clip: text; /* Hintergrundclip für den Text */
+    -webkit-text-fill-color: transparent; /* Transparenter Text für den Farbverlauf */
+}
+
+header nav ul {
+    list-style: none; /* Keine Aufzählungszeichen */
+    display: flex; /* Flexbox-Layout für Navigation */
+    flex-wrap: wrap; /* Ermöglicht Umfließen der Navigation bei kleiner Bildschirmgröße */
+    justify-content: center; /* Zentriert die Navigation */
+}
+
+header nav ul li {
+    margin-left: 20px; /* Abstand zwischen den Navigationselementen */
+}
+
+header nav ul li a {
+    color: var(--dark-blue); /* Verwendung der dunkelblauen Variablen für Links */
+    text-decoration: none; /* Entfernt die Unterstreichung von Links */
+    font-size: 18px; /* Schriftgröße der Links */
+    font-weight: bold; /* Fettgedruckte Links */
+}
+
+header .reminder-icon 
+header .calender.icon {
+    font-size: 22px; /* Größe des Erinnerungsicons */
+}
+
+
+/* Login Container */
+.login-container {
+    background-color: rgba(255,255,255,0.2); /* Transparenter Hintergrund für den Login-Bereich */
+    border-radius: 15px; /* Abgerundete Ecken */
+    width: 100%; /* Breite des Containers */
+    padding: 100px; /* Innenabstand */
+    max-width: 700px; /* Maximale Breite */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Schatten für den 3D-Effekt */
+    text-align: center; /* Zentriert den Text */
+    margin: 0 auto; /* Horizontale Zentrierung */
+    display: flex; /* Flexbox-Layout */
+    flex-direction: column; /* Vertikale Anordnung der Elemente */
+    justify-content: center; /* Zentriert die Elemente vertikal */
+    align-items: center; /* Zentriert die Elemente horizontal */
+    margin-top: 100px; /* Abstand oben */
+    margin-bottom: 100px; /* Abstand unten */
+}
+
+/* Styling für Eingabefelder */
+input[type="text"], input[type="password"] {
+    padding: 10px; /* Innenabstand für Eingabefelder */
+    width: 100%; /* Breite 100% des Containers */
+    font-size: 1rem; /* Schriftgröße */
+    margin: 10px 0; /* Abstand zwischen den Eingabefeldern */
+    border: 2px solid #0082C9; /* Rahmen für Eingabefelder */
+    border-radius: 5px; /* Abgerundete Ecken für Eingabefelder */
+}
+
+button {
+    background-color: var(--dark-blue); /* Hintergrundfarbe des Buttons */
+    color: #fff; /* Textfarbe des Buttons */
+    border: none; /* Keine Rahmen für den Button */
+    padding: 10px 20px; /* Innenabstand des Buttons */
+    cursor: pointer; /* Zeigt Hand-Cursor beim Hover */
+    font-size: 1rem; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    width: 100%; /* Breite des Buttons */
+    margin-top: 10px; /* Abstand oben */
+}
+
+button:hover {
+    background-color: #005999; /* Dunklere Hintergrundfarbe beim Hover */
+}
+
+/* Vorschau-Styling */
+.overlay {
+    position: fixed; /* Overlay bleibt beim Scrollen fixiert */
+    top: 0; /* Oben am Viewport ausrichten */
+    left: 0; /* Links am Viewport ausrichten */
+    width: 100%; /* Breite des Overlays 100% des Viewports */
+    height: 100%; /* Höhe des Overlays 100% des Viewports */
+    background-color: rgba(0,0,0,0.3); /* Dunkler, transparenter Hintergrund */
+    color: var(--dark-blue); /* Textfarbe für die Vorschau */
+    display: flex; /* Flexbox-Layout für das Overlay */
+    align-items: center; /* Zentriert den Inhalt vertikal */
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+    z-index: 10; /* Höherer z-index, um über anderen Inhalten angezeigt zu werden */
+    opacity: 1; /* Anfangs sichtbar */
+    transition: opacity 0.5s ease; /* Übergang für Opazität */
+
+}
+.preview-content {
+    text-align: center; /* Zentriert den Text im Vorschau-Container */
+}
+.preview-content .logo img {
+    max-width: 20%; /* Bild passt maximal 80% der Breite an */
+    height: auto; /* Höhe automatisch, um das Seitenverhältnis beizubehalten */
+    margin-top: 20px; /* Abstand über dem Bild */
+    margin-bottom: 20px; /* Abstand unter dem Bild */
+    border-radius: 10px; /* Runde Ecken */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Leichter Schatten */
+
+}
+.hidden {
+    opacity: 0; /* Unsichtbar, wenn die Klasse hinzugefügt wird */
+    pointer-events: none; /* Verhindert Interaktionen mit dem unsichtbaren Element */
+}
+#preview.hidden {
+    transform: translateY(-100%); /* Vorschau nach oben schieben, wenn versteckt */
+}
+
+#login {
+    opacity: 0; /* Anfangs unsichtbar */
+    transition: opacity 0.5s ease; /* Übergang für Opazität */
+}
+
+#login:not(.hidden) {
+    opacity: 1; /* Login sichtbar machen */
+}
+
+/* Hauptbereich */
+main {
+    padding: 50px; /* Innenabstand des Hauptbereichs */
+    flex: 1; /* Nimmt den verfügbaren Platz ein */
+    display: flex; /* Flexbox-Layout für den Hauptbereich */
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+    align-items: center; /* Zentriert den Inhalt vertikal */
+    color: #333; /* Textfarbe für den Hauptbereich */
+}
+
+/* Grid-System für Kacheln */
+.tiles {
+    display: grid; /* Verwende Grid-Layout für die Kacheln */
+    grid-template-columns: repeat(3, 1fr); /* Drei gleichmäßige Spalten */
+    gap: 30px; /* Abstand zwischen den Kacheln */
+    width: 100%; /* Breite des Container */
+    max-width: 1200px; /* Maximale Breite */
+}
+
+.tile {
+    background-color: white; /* Hintergrundfarbe der Kacheln */
+    border-radius: 15px; /* Abgerundete Ecken für Kacheln */
+    padding: 40px; /* Innenabstand der Kacheln */
+    width: 100%; /* Breite der Kachel */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Schatten für Kacheln */
+    cursor: pointer; /* Zeigt Hand-Cursor beim Hover */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Übergänge für Animationen */
+}
+
+.tile:hover {
+    transform: translateY(-10px); /* Kachel hebt sich beim Hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stärkere Schatten beim Hover */
+}
+
+.tile img {
+    width: 100px; /* Größe der Symbole in den Kacheln */
+    margin-bottom: 20px; /* Abstand nach unten */
+}
+
+.tile h2 {
+    font-size: 1.5rem; /* Schriftgröße für die Titel der Kacheln */
+    color: var(--dark-blue); /* Verwendung der dunkelblauen Variablen */
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue); /* Hintergrundfarbe des Footers */
+    color: white; /* Textfarbe des Footers */
+    padding: 20px 0; /* Vertikale Polsterung im Footer */
+    text-align: center; /* Zentriert den Text im Footer */
+}
+
+footer ul {
+    list-style: none; /* Keine Aufzählungszeichen für die Footer-Liste */
+    display: flex; /* Flexbox-Layout für die Footer-Liste */
+    justify-content: center; /* Zentriert die Liste */
+    padding: 0; /* Entfernt Polsterung der Liste */
+}
+
+footer ul li {
+    margin: 0 15px; /* Abstand zwischen den Listenelementen */
+}
+
+footer ul li a {
+    color: white; /* Textfarbe der Links im Footer */
+    text-decoration: none; /* Entfernt die Unterstreichung von Links */
+    font-size: 14px; /* Schriftgröße der Links im Footer */
+}
+/* CSS für Impressum, Kontakt und Datenschutz Seiten */
+.impressum, .kontakt, .datenschutz {
+    padding: 40px; /* Platz um den Text auf jeder Seite */
+    background-color: #ffffff; /* Weißer Hintergrund für bessere Lesbarkeit */
+    border-radius: 8px; /* Runde Ecken für einen moderneren Look */
+    margin: 30px auto; /* Abstand nach oben und unten */
+    max-width: 800px; /* Maximale Breite für Lesbarkeit */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+/* Überschriften für Seiten */
+.impressum h1, .kontakt h1, .datenschutz h1 {
+    font-size: 2rem; /* Große Schrift für die Hauptüberschrift */
+    color: var(--dark-blue); /* Dunkelblaue Farbe */
+    text-align: center; /* Zentrierte Hauptüberschrift */
+    margin-bottom: 20px; /* Abstand nach unten */
+}
+
+/* Abschnitt-Überschriften */
+.impressum h2, .kontakt h2, .datenschutz h2 {
+    font-size: 1.5rem; /* Größere Schriftgröße für Abschnittsüberschriften */
+    color: var(--blue); /* Blaue Farbe für den Kontrast */
+    margin-top: 20px; /* Abstand über den Überschriften */
+    border-bottom: 1px solid #ddd; /* Unterstreichung für Struktur */
+    padding-bottom: 5px;
+}
+
+/* Textabsätze */
+.impressum p, .kontakt p, .datenschutz p {
+    margin-bottom: 15px; /* Platz unter jedem Absatz */
+    line-height: 1.6; /* Zeilenhöhe für bessere Lesbarkeit */
+    font-size: 1rem; /* Standard-Schriftgröße */
+    color: #333; /* Dunkle Farbe für Text */
+}
+
+/* Kontaktformular */
+.kontakt form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Platz zwischen Eingabefeldern */
+}
+
+.kontakt form input[type="text"],
+.kontakt form input[type="email"],
+.kontakt form textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.kontakt form button {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.kontakt form button:hover {
+    background-color: #005999;
+}
+
+/* Links im Text für Impressum und Datenschutz */
+.impressum a, .datenschutz a {
+    color: var(--blue); /* Blaue Links */
+    text-decoration: none;
+}
+
+.impressum a:hover, .datenschutz a:hover {
+    text-decoration: underline; /* Unterstrich beim Hover */
+
+}
+/* ... Dein bestehender CSS-Code ... */
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+.profile-container {
+      background-color: white; /* Weißer Hintergrund mit Transparenz */
+      border-radius: 10px; /* Abgerundete Ecken */
+      padding: 20px; /* Innenabstand */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Schatten für den 3D-Effekt */
+      width: 90%; /* Breite des Containers */
+      max-width: 600px; /* Maximale Breite */
+      margin-right: 350px;
+      margin-left: 400px;
+      margin-top: 100px;
+    }
+
+    /* Stil für die Profilbild-Verwaltung */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Zentriert den Inhalt */
+      margin-bottom: 20px; /* Abstand nach unten */
+    }
+
+    /* Stil für das Profilbild */
+    #profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%; /* Rundes Profilbild */
+      object-fit: cover; /* Bildanpassung */
+      margin-bottom: 10px; /* Abstand nach unten */
+      transition: transform 0.3s; /* Animation für Hover */
+    }
+
+    /* Hover-Effekt für das Profilbild */
+    #profile-image:hover {
+      transform: scale(1.1); /* Vergrößerung bei Hover */
+    }
+
+    /* Stil für die Sektionen */
+    .section {
+      margin: 20px 0; /* Abstand oben und unten */
+      text-align: center; /* Zentriert den Text */
+    }
+
+    /* Stil für die Buttons */
+    button {
+        width: 150px;
+      background-color: var(--dark-blue); /* Grüner Hintergrund */
+      color: white; /* Weißer Text */
+      border: none; /* Kein Rahmen */
+      padding: 10px 10px; /* Innenabstand */
+      border-radius: 5px; /* Abgerundete Ecken */
+      cursor: pointer; /* Zeiger-Cursor */
+      transition: background-color 0.3s; /* Animation für Hover */
+    }
+
+    /* Hover-Effekt für die Buttons */
+    button:hover {
+      background-color: var(--dark-blue); /* Dunklerer Grünton */
+    }
+
+           .reminder-container {
+            max-width: 800px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Weißer, transparenter Hintergrund */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .reminder-container h2 {
+            color: #333; /* Dunkle Schriftfarbe */
+        }
+
+        .reminder-container ul {
+            list-style-type: none; /* Keine Aufzählungszeichen */
+            padding: 0;
+        }
+
+        .reminder-container li {
+            background-color: #e7f3fe; /* Hellblauer Hintergrund für die Erinnerungen */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s; /* Animation für den Hover-Effekt */
+        }
+
+        .reminder-contain li:hover {
+            background-color: #d0e4ff; /* Dunklerer blauer Hintergrund bei Hover */
+        }
+        /*responsive footer*/
+@media (max-width: 768px) {
+    footer ul{
+        display: block;
+        padding: 15px; /* Größeres Padding auf kleinen Bildschirmen */
+        margin-bottom: 10px; /* Mehr Abstand zwischen den Listenelementen */
+    }
+    footer ul li {
+        margin-bottom: 9px;
+    }
+}

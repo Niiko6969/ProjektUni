@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e0f7fa, #81dcb3, #42aaff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+}
+
+:root {
+    --dark-blue: #0c4c8a; /* Dunkelblau für das Design */
+    --light-gray: #d3d3d3; /* Hellgrau */
+}
+
+.calendar-container {
+    width: 90%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #0078D7;
+    color: white;
+}
+
+.calendar-header select,
+.calendar-header button {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin: 0 5px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #ddd;
+    color: #333;
+}
+
+.calendar-grid div {
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 14px;
+    min-height: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.event-button {
+    font-size: 12px;
+    background-color: #0078D7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.event-button:hover {
+    background-color: #0056a1; /* Dunklerer Farbton bei Hover */
+}
+
+.event-details {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.event-details h3 {
+    margin: 0 0 10px 0;
+}
+
+/* Blurr wenn auf Suchleiste */
+.blurr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+i {
+    color: white;
+    font-size: 1.2em;
+}
+
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 9px 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.8);
+}
+
+
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+

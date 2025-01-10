@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Uni-Reserve | Wo Buchung auf Innovation trifft</title>
+    <meta
+      name="description"
+      content="Uni Reserve ist ein effizientes Buchungssystem für Universitäten zur Verwaltung und Reservierung von Räumen und Ressourcen durch Studierende und Mitarbeiter."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="contentType" content="Homepage" />
+    <meta name="publicationDate" content="0.0.0.0" />
+    <meta name="authors" content="0.0.0.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styleGesamt.css" />
+    <link rel="stylesheet" href="Booklist.css" />
+    <script
+      src="https://kit.fontawesome.com/2ec6dc2d1f.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!--Navigationsmenu-->
+    <div class="header-container">
+      <div id="blurr" class="blurr" style="display: none"></div>
+      <!--Blurr für search input-->
+      <!--Großer Nav-->
+      <nav class="nav-large">
+        <div class="nav-img" onclick="window.location.href='Startseite.html'">
+          <span class="header-text">UNI RESERVE</span>
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png"
+            alt="UniReserve Logo"
+            class="logo-image"
+          />
+        </div>
+
+        <div class="nav-text">
+          <a class="dropdown-link" href="Dienstleistungen.html"
+            >Verfügbare Veranstaltungen</a
+          >
+          <a href="studienraeume.html">Studienräume buchen</a>
+        </div>
+
+        <input
+          type="text"
+          id="search-input"
+          class="searchinput"
+          placeholder="Suche..."
+        />
+        <i class="fa fa-search" id="search-icon" onclick="performSearch()"></i>
+
+        <div class="nav-symbol">
+          <i class="fa fa-user"></i>
+          <ul class="user-content">
+            <button
+              class="user-button"
+              onclick="window.location.href='Benutzerprofl.html'"
+            >
+              Profil
+            </button>
+            <button
+              class="user-button"
+              onclick="window.location.href='Loginbereich.html'"
+            >
+              ausloggen
+            </button>
+            <button class="user-button" id="Verlauf">Verlauf</button>
+          </ul>
+        </div>
+      </nav>
+
+      <nav class="nav-small">
+        <div class="nav-img" onclick="window.location.href='Startseite.html'">
+          <img
+            src="C:/Drittes Semester/WebPrg/HTLM/Bilder/logo (3).png"
+            alt="UniReserve Logo"
+            class="logo-image"
+          />
+        </div>
+        <input
+          type="text"
+          id="search-input-small"
+          class="searchinput"
+          placeholder="Suche..."
+        />
+        <div class="nav-symbol">
+          <i
+            class="fa fa-search"
+            id="search-icon"
+            onclick="performSearch()"
+          ></i>
+          <i id="menu-btn" class="fa-solid fa-bars"></i>
+        </div>
+      </nav>
+
+      <!-- Wrapper für den Filter-Button -->
+      <div id="filter-wrapper">
+        <label>
+          <span class="filter-span">
+            <input
+              type="checkbox"
+              class="filter-checkbox"
+              id="filter-available"
+            />
+            Verfügbar
+          </span>
+        </label>
+        <div class="zeitraum">
+          <div class="select">
+            <span class="selected"
+              >Alle Zeiträume<span class="caret">&#x2335;</span>
+              <!-- ⌵ --></span
+            >
+            <div class="caret"></div>
+          </div>
+          <ul class="zeitraum-content">
+            <li>Vergangene 12 Monate</li>
+            <li>Vergangene 2 Jahre</li>
+            <li>Vergangene 5 Jahre</li>
+            <li>Vergangene 10 Jahre</li>
+            <li class="active">Alle Zeiträume</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--Sidebar für Buchverlauf-->
+    <div id="sidebarVerlauf" class="sidebarVerlauf">
+      <button id="closeSidebar">Schließen</button>
+      <h2>Ausgeliehene Bücher:</h2>
+      <div id="sidebarContent"></div>
+      <!-- Hier werden die Buchdaten angezeigt -->
+    </div>
+
+    <!-- Dimmed overlay (hidden initially) -->
+    <div id="dimmed-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <ul>
+        <li><a href="Loginbereich.html">Ausloggen</a></li>
+        <li><a href="Dienstleistungen.html">Verfügbare Events</a></li>
+        <li><a href="studienraeume.html">Studienräume Buchen</a></li>
+      </ul>
+    </aside>
+
+    <main>
+      <!--Bücherliste-->
+      <div class="book-list-container">
+        <h1 class="BücherlisteÜberschrift">Bücherliste</h1>
+        <ul>
+          <!--Hier wird die Buchliste dynamisch mit Javascropt hinzugefügt-->
+        </ul>
+        <button id="load-more" style="display: none">
+          Weitere Ergebnisse laden
+        </button>
+      </div>
+
+      <!--Popup für Ausleihzeitraum-->
+      <!-- Popup-Hintergrund -->
+      <div
+        id="popup-background"
+        class="popup-background"
+        style="display: none"
+      ></div>
+      <!-- Popup-Container -->
+      <div id="borrow-popup" class="borrow-popup" style="display: none">
+        <div class="popup-content">
+          <span id="close-popup" class="close-popup">&times;</span>
+          <h3 class="PopupÜberschrift">
+            Für welchen Seitraum möchten Sie das buch ausleihen?
+          </h3>
+          <div class="button-container">
+            <button class="borrow-duration" data-duration="2">2 Wochen</button>
+            <button class="borrow-duration" data-duration="4">4 Wochen</button>
+          </div>
+        </div>
+        <div id="confirmation-message" style="display: none"></div>
+        <!-- Bestätigungsnachricht -->
+      </div>
+
+      <!-- Popup für die Reservierungsbestätigung -->
+      <div
+        id="confirmation-popup"
+        class="confirmation-popup"
+        style="display: none"
+      >
+        <div class="confirmation-popup-content">
+          <span id="close-confirmation-popup" class="close-popup">&times;</span>
+          <h3 class="PopupÜberschrift">Reservierungsbestätigung</h3>
+          <p id="reservation-message"></p>
+          <!-- Hier wird die Nachricht angezeigt -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Bereich -->
+    <footer>
+      <ul>
+        <li><a href="Impressum.html">Impressum</a></li>
+        <li><a href="Datenschutz.html">Datenschutz</a></li>
+        <li><a href="Kontakt.html">Kontakt</a></li>
+      </ul>
+      <p>© 2024 Uni Reserve. Alle Inhalte unterliegen unserem Copyright.</p>
+    </footer>
+
+    <script src="navigator.js"></script>
+    <!--Sticky Nav, Profil Button-->
+    <script src="suchen.js"></script>
+    <!--Suchlogik und Input verhalten-->
+    <script src="bücherliste.js"></script>
+    <!--Reinladen der Buchelemente, Bücher detailansicht-->
+    <script src="popout.js"></script>
+    <!--Büher ausleihen-->
+    <script src="smallSidebar.js"></script>
+    <!--Sidebar für kleine Ansicht-->
+  </body>
+</html>

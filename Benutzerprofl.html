@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Benutzerprofil verwalten</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+      // Profilbild-Upload Funktion
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("profile-pic-upload")
+          .addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = function (e) {
+                document.getElementById("profile-image").src = e.target.result;
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+      });
+      function showSuccessMessage() {
+        alert("Erfolgreich ausgeloggt!"); // Zeigt ein Pop-up-Fenster an
+        // Benutzer nach Bestätigung auf die Startseite weiterleiten
+        window.location.href = "Loginbereich.html"; // Leitet zur angegebenen Seite weiter
+      }
+
+      // Funktion für die Bearbeitung des Passworts
+      function editPassword() {
+        const password = prompt("Geben Sie Ihr neues Passwort ein:", "");
+        if (password) {
+          document.getElementById("password").textContent = "⬤⬤⬤⬤⬤⬤⬤⬤⬤⬤⬤⬤"; // Hier wird das Passwort nicht angezeigt.
+          alert("Passwort erfolgreich geändert!");
+        }
+      }
+    </script>
+  </head>
+
+  <!-- Header Bereich -->
+  <header>
+    <div class="logo">
+      <img
+        onclick="window.location.href= 'Startseite.html'"
+        src="C:/Drittes Semester/WebPrg/HTLM/Bilder/image1.png"
+        alt="UNI RESERVE Logo"
+      />
+      <h1>UNI RESERVE</h1>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="Kalender.html"
+            ><span class="calender-icon">📆</span> Kalender</a
+          >
+        </li>
+        <li>
+          <a href="Erinnerungen.html"
+            ><span class="reminder-icon">🔔</span> Erinnerungen</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <body>
+    <div class="profile-container">
+      <!-- Profilbild-Verwaltung -->
+      <div class="profile-header">
+        <img
+          src="C:/Drittes Semester/WebPrg/HTLM/Bilder/Profilbild.jpg"
+          alt="Profilbild"
+          id="profile-image"
+        />
+        <input type="file" id="profile-pic-upload" accept="image/*" hidden />
+        <button onclick="document.getElementById('profile-pic-upload').click()">
+          Profilbild ändern
+        </button>
+      </div>
+
+      <!-- Persönliche Daten -->
+      <div class="section">
+        <h3>Persönliche Daten</h3>
+        <p>Name: <span id="user-name">Dilara Yildiz</span></p>
+        <p>
+          Email: <span id="user-email">s232554@student.dhbw-mannheim.de</span>
+        </p>
+        <p>Passwort: <span id="password">⬤⬤⬤⬤⬤⬤⬤⬤⬤⬤⬤⬤</span></p>
+        <button onclick="editPassword()">Passwort ändern</button>
+        <button onclick="showSuccessMessage()">Ausloggen</button>
+      </div>
+
+      <!-- Buchungsverlauf -->
+      <div class="section">
+        <h3>Buchungsverlauf</h3>
+        <ul id="booking-history">
+          <!-- Dynamischer Buchungsverlauf -->
+          <li>
+            Buchung 1: Gastvortrag über Immobilienmanagement am 12.09.2023
+          </li>
+          <li>
+            Buchung 2: Buch "Grundlagen über UML" ausgeliehen am 05.08.2023
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

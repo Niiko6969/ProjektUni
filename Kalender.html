@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interaktiver Kalender</title>
+    <link rel="stylesheet" href="styleKalender.css" />
+    <script
+      src="https://kit.fontawesome.com/2ec6dc2d1f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <!-- Header Bereich -->
+  <header>
+    <div class="logo">
+      <img
+        onclick="window.location.href= 'Startseite.html'"
+        src="C:/Drittes Semester/WebPrg/HTLM/Bilder/image1.png"
+        alt="UNI RESERVE Logo"
+      />
+      <h1>UNI RESERVE</h1>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="Erinnerungen.html"
+            ><span class="reminder-icon">🔔</span> Erinnerungen</a
+          >
+        </li>
+        <li>
+          <a href="Benutzerprofl.html"
+            ><span class="user-account">👩‍🎓</span> Profil
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <body>
+    <!-- Kalender-Bereich -->
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button id="prev-month">&#8592;</button>
+        <select id="month-select"></select>
+        <select id="year-select"></select>
+        <button id="next-month">&#8594;</button>
+      </div>
+
+      <div class="calendar-grid" id="calendar"></div>
+
+      <!-- Event-Details (initially hidden) -->
+      <div id="event-details" style="display: none">
+        <h3 id="event-title"></h3>
+        <p id="event-description"></p>
+        <p id="event-location"></p>
+        <p id="event-time"></p>
+        <p id="event-author"></p>
+      </div>
+    </div>
+
+    <!-- Skripte -->
+    <script src="kalender.js"></script>
+    <script src="navigator.js"></script>
+    <!-- Sticky Nav, Profil Button -->
+    <script src="suchen.js"></script>
+    <!-- Suchlogik und Input verhalten -->
+    <script src="smallSidebar.js"></script>
+    <!-- Sidebar für kleine Ansicht -->
+  </body>
+</html>
